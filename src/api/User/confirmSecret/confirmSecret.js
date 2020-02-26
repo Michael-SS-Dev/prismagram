@@ -8,6 +8,7 @@ export default {
       const { email, secret } = args;
       const user = await prisma.user({ email });
       if (user.loginSecret === secret) {
+        // secret이 확인되고 나면, 해당 유저의 secret을 초기화 시킴
         await prisma.updateUser({
           where: { id: user.id },
           data: {
