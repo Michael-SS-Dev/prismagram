@@ -5,6 +5,23 @@ export default {
   // 아래의 의미는 graphql models의 type 중 User의 fulName 변수가 아래와 같이 정해지는 resolver를 정의한 것
   // API 내 js 중 한 곳에만 만들어도 작동함 따라서 computed.js 한 곳에 몰아서 만드는 것
   User: {
+    posts: ({ id }) => prisma.user({ id }).posts(),
+    following: ({ id }) => prisma.user({ id }).following(),
+    followers: ({ id }) => prisma.user({ id }).followers(),
+    likes: ({ id }) => prisma.user({ id }).likes(),
+    comments: ({ id }) => prisma.user({ id }).comments(),
+    rooms: ({ id }) => prisma.user({ id }).rooms(),
+    followingCount: ({ id }) =>
+      prisma
+        .usersConnection({ where: { followers_some: { id } } })
+        .aggregate()
+        .count(),
+    followersCount: ({ id }) =>
+      prisma
+        .usersConnection({ where: { following_none: { id } } })
+        .aggregate()
+        .count(),
+    // 상단 fragment 제거 위해 추가
     fullName: parent => {
       return `${parent.firstName} ${parent.lastName}`;
     },

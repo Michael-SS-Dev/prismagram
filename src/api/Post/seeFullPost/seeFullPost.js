@@ -1,6 +1,6 @@
 import { prisma } from "../../../../generated/prisma-client";
-import { COMMENT_FRAGMENT, FULL_POST_FRAGMENT } from "../../../fragments";
-
+//import { COMMENT_FRAGMENT, FULL_POST_FRAGMENT } from "../../../fragments";
+// fragment 대체 ***
 export default {
   Query: {
     seeFullPost: async (_, args) => {
@@ -26,7 +26,9 @@ export default {
       //   user
       // };
       // 위 내용 아래 한줄로 바꿀 수 있었던 이유, 바꿔야 하는 이유 => 리턴값이 graphql 파일에서 POST로 정해져 있는데 여러가지 객체를 리턴했기 때문
-      return prisma.post({ id }).$fragment(FULL_POST_FRAGMENT);
+      //return prisma.post({ id }).$fragment(FULL_POST_FRAGMENT);
+      // fragment 대체 ***
+      return prisma.post({ id });
     }
   }
 };

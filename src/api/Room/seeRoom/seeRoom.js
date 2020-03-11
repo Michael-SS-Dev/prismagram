@@ -1,5 +1,6 @@
 import { prisma } from "../../../../generated/prisma-client";
-import { ROOM_FRAGMENT } from "../../../fragments";
+//import { ROOM_FRAGMENT } from "../../../fragments";
+// fragment 대체 ***
 
 export default {
   Query: {
@@ -13,7 +14,9 @@ export default {
         }
       });
       if (canSee) {
-        return prisma.room({ id }).$fragment(ROOM_FRAGMENT);
+        //return prisma.room({ id }).$fragment(ROOM_FRAGMENT);
+        // fragment 대체 ***
+        return prisma.room({ id });
       } else {
         throw Error("You can't see this");
       }

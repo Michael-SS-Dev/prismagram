@@ -57,3 +57,6 @@ export const ROOM_FRAGMENT = `
         }
     }
 `;
+
+// 삭제 이유와 왜 썻어야 하는지
+// nested relationship 반영을 위해 사용헀음

@@ -1,5 +1,6 @@
 import { prisma } from "../../../../generated/prisma-client";
-import { ROOM_FRAGMENT } from "../../../fragments";
+//import { ROOM_FRAGMENT } from "../../../fragments";
+//Fragment 제거 ***
 
 export default {
   Query: {
@@ -11,17 +12,25 @@ export default {
       //       participants_some: {
       //         id: user.id
       // 바꿀 수 있었던 이유
-      return prisma
-        .rooms({
-          where: {
-            participants_some: {
-              id: user.id
-            }
+      // return prisma
+      //   .rooms({
+      //     where: {
+      //       participants_some: {
+      //         id: user.id
+      //       }
+      //     }
+      //     //     }
+      //     //   });
+      //   })
+      //   .$fragment(ROOM_FRAGMENT);
+      // ** fragment 제거
+      return prisma.rooms({
+        where: {
+          participants_some: {
+            id: user.id
           }
-          //     }
-          //   });
-        })
-        .$fragment(ROOM_FRAGMENT);
+        }
+      });
     }
   }
 };

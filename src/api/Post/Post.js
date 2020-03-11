@@ -2,6 +2,10 @@ import { prisma } from "../../../generated/prisma-client";
 
 export default {
   Post: {
+    files: ({ id }) => prisma.post({ id }).files(),
+    comments: ({ id }) => prisma.post({ id }).comments(),
+    user: ({ id }) => prisma.post({ id }).user(),
+    likes: ({ id }) => prisma.post({ id }).likes(),
     isLiked: (parent, _, { request }) => {
       const { user } = request;
       const { id } = parent;
@@ -22,13 +26,10 @@ export default {
     },
     likeCount: parent =>
       prisma
-        // 해당 포스트 id에 연결되어있는 모든 like 객체들의 개수를
         .likesConnection({
           where: { post: { id: parent.id } }
         })
-        // 모아서
         .aggregate()
-        // 갯수를 세서 리턴
         .count()
   }
 };
